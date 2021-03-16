@@ -986,6 +986,11 @@
                 canUpdate: 'new'
             },
             {
+                key: 'check-integrity',
+                category: 'bittorrent',
+                canUpdate: 'new|waiting|paused'
+            },
+            {
                 key: 'bt-max-peers',
                 category: 'bittorrent'
             },

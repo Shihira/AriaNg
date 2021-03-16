@@ -25,6 +25,14 @@
                 <div id="overview-items" class="settings-table striped hoverable" ng-mousedown="onOverviewMouseDown()" data-toggle="context" data-target="#task-overview-contextmenu">
                     <div class="row" ng-if="task">
                         <div class="setting-key col-sm-4">
+                            <span translate>Task GID</span>
+                        </div>
+                        <div class="setting-value col-sm-8">
+                            <span ng-bind="task.gid" ng-tooltip-container="body" ng-tooltip-placement="bottom"></span>
+                        </div>
+                    </div>
+                    <div class="row" ng-if="task">
+                        <div class="setting-key col-sm-4">
                             <span translate>Task Name</span>
                         </div>
                         <div class="setting-value col-sm-8">
