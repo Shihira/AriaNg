@@ -1,7 +1,9 @@
 (function () {
     'use strict';
 
-    angular.module('ariaNg').factory('ariaNgCommonService', ['$location', '$timeout', 'base64', 'moment', 'SweetAlert', 'ariaNgConstants', function ($location, $timeout, base64, moment, SweetAlert, ariaNgConstants) {
+    angular.module('ariaNg').factory('ariaNgCommonService', ['$http', '$location', '$timeout', 'base64', 'moment', 'SweetAlert', 'ariaNgConstants', function ($http, $location, $timeout, base64, moment, SweetAlert, ariaNgConstants) {
+        var queryCountry_countryCache = Object();
+
         return {
             base64Encode: function (value) {
                 return base64.encode(value);
@@ -269,6 +271,28 @@
                 }
 
                 return options;
+            },
+            queryCountry: function (ip) {
+                if (queryCountry_countryCache[ip])
+                    return queryCountry_countryCache[ip];
+
+                $http({ method: 'GET', url: ariaNgConstants.geoipServiceUrl.replace("${ip}", ip) })
+                    .then(function onSuccess(response) {
+                        var r = response.data;
+                        var iso_code = r.country.iso_code;
+                        if (!iso_code || iso_code.length < 2)
+                            return;
+
+                        var emoji = String.fromCodePoint(0x1f1e6 - 65 + iso_code[0].charCodeAt()) +
+                                    String.fromCodePoint(0x1f1e6 - 65 + iso_code[1].charCodeAt());
+
+                        queryCountry_countryCache[ip] = {
+                            "name": r.country.names.en,
+                            "emoji": emoji,
+                        };
+                    });
+
+                return { "name":"", "emoji": "" };
             }
         };
     }]);

@@ -20,6 +20,7 @@
         errorTooltipDelay: 500,
         notificationInPageTimeout: 2000,
         historyMaxStoreCount: 10,
+        geoipServiceUrl: '/Pages/assets/geoip/GeoLite2-Country.mmdb?q=query&ip=${ip}',
         cachedDebugLogsLimit: 100
     }).constant('ariaNgDefaultOptions', {
         language: 'en',

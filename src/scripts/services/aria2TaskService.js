@@ -400,6 +400,7 @@
                 var completedPieceCount = ariaNgCommonService.countArray(completedPieces, true);
 
                 peer.name = peer.ip + ':' + peer.port;
+                peer.country = ariaNgCommonService.queryCountry(peer.ip);
                 peer.completePercent = completedPieceCount / task.numPieces * 100;
                 peer.downloadSpeed = upstreamToSpeed;
                 peer.uploadSpeed = downstreamFromSpeed;

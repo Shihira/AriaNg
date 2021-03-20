@@ -326,6 +326,7 @@
                              data-toggle="context" data-target="#task-peerlist-contextmenu">
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                 <div class="peer-name-wrapper auto-ellipsis" title="{{(peer.client ? peer.client.info : '') + (peer.seeder ? (peer.client.info ? ', ' : '') + ('Seeding' | translate) : '')}}">
+                                    <span ng-bind="peer.country.emoji ? peer.country.emoji + ' ' : ''" title="{{peer.country.name}}" ng-if="peer.country"></span>
                                     <span ng-bind="peer.name | translate"></span><i class="icon-seeder fa fa-angle-double-up" ng-if="peer && peer.seeder"></i>
                                     <span class="peer-client" ng-if="!!peer.client"
                                         ng-bind="peer.client ? ('(' + peer.client.name + (peer.client.version ? ' ' + peer.client.version : '') + ')') : ''"></span>
